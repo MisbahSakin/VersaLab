@@ -1,100 +1,154 @@
-import React from 'react';
+import { Lightbulb, Search, PenTool, Box, Rocket, Check, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { fadeUp, intro } from '../motion';
+import { Description } from '../Seo';
+
+// Numbered deliberately: unlike Services, this genuinely is a sequence, so the
+// numerals carry information the reader needs.
+const steps = [
+  {
+    id: '01',
+    icon: Lightbulb,
+    title: 'Discovery & architecture',
+    short: 'Discover',
+    description:
+      'We start by understanding the business objective, the audience, and the constraints. The system gets designed before a line of code is written.',
+    details: ['Stakeholder interviews', 'System architecture design', 'Wireframing & UX flows', 'Technical feasibility assessment'],
+  },
+  {
+    id: '02',
+    icon: PenTool,
+    title: 'Agile development',
+    short: 'Build',
+    description:
+      'Cross-functional pods work in two-week sprints. You get working software continuously, and requirements can change without derailing the build.',
+    details: ['Two-week sprint cycles', 'Daily standups & written reporting', 'Continuous integration', 'Code review by technical advisors'],
+  },
+  {
+    id: '03',
+    icon: Search,
+    title: 'Quality assurance',
+    short: 'Test',
+    description:
+      'Quality is built in throughout, not bolted on at the end. Multi-layered testing covers security, performance, and reliability before release.',
+    details: ['Automated unit & integration testing', 'Manual exploratory testing', 'Security vulnerability scanning', 'Performance profiling'],
+  },
+  {
+    id: '04',
+    icon: Box,
+    title: 'Deployment & scaling',
+    short: 'Deploy',
+    description:
+      'We handle going live: zero-downtime deployments, infrastructure configured for auto-scaling, and monitoring in place before you need it.',
+    details: ['CI/CD pipeline configuration', 'Cloud infrastructure provisioning', 'Database migration', 'Monitoring & alerting setup'],
+  },
+  {
+    id: '05',
+    icon: Rocket,
+    title: 'Continuous evolution',
+    short: 'Evolve',
+    description:
+      'Launch is the start. We support the system, watch its health, and iterate on what real usage data and market shifts tell us.',
+    details: ['SLA-backed technical support', 'User analytics review', 'Feature iteration', 'Technical debt management'],
+  },
+];
 
 export default function Process() {
-  const fadeUp = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-50px" },
-    transition: { duration: 0.6, ease: "easeOut" }
-  };
-
-  const steps = [
-    {
-      id: "01",
-      title: "Discovery & Architecture",
-      description: "We begin by deeply understanding your business objectives, target audience, and technical constraints. Our architects design a scalable foundation before a single line of code is written.",
-      details: ["Stakeholder interviews", "System architecture design", "Wireframing & UX flows", "Technical feasibility assessment"]
-    },
-    {
-      id: "02",
-      title: "Agile Development",
-      description: "Execution is handled by dedicated, cross-functional pods working in iterative sprints. This ensures continuous delivery of value and allows for flexibility as requirements evolve.",
-      details: ["Two-week sprint cycles", "Daily standups & transparent reporting", "Continuous Integration (CI)", "Code reviews by Technical Advisors"]
-    },
-    {
-      id: "03",
-      title: "Quality Assurance",
-      description: "Quality is embedded throughout the lifecycle, not just at the end. We employ multi-layered testing strategies to ensure security, performance, and reliability.",
-      details: ["Automated unit & integration testing", "Manual exploratory testing", "Security vulnerability scanning", "Performance profiling"]
-    },
-    {
-      id: "04",
-      title: "Deployment & Scaling",
-      description: "We manage the complexities of taking your product live. Our DevOps engineers ensure smooth deployments with zero downtime and configure infrastructure for auto-scaling.",
-      details: ["CI/CD pipeline configuration", "Cloud infrastructure provisioning", "Database migration", "Monitoring & alerting setup"]
-    },
-    {
-      id: "05",
-      title: "Continuous Evolution",
-      description: "Launch is just the beginning. We provide ongoing support, monitor system health, and iterate on features based on real user data and changing market dynamics.",
-      details: ["SLA-backed technical support", "User analytics review", "Feature iteration", "Technical debt management"]
-    }
-  ];
-
   return (
-    <div className="pt-28 md:pt-40 pb-24 bg-[#0A0F1C] min-h-screen">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div className="mb-20 md:mb-32 max-w-4xl relative z-10" {...fadeUp}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-8 border border-white/10">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span className="text-sm font-medium text-slate-300 tracking-wide uppercase">Methodology</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-medium tracking-tighter text-white mb-6 md:mb-8 leading-[1.05]">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Delivery Model.</span>
+    <div>
+      <title>VersaLab | Process</title>
+      <Description text="How we run projects: discovery, agile delivery, QA, deployment, and ongoing iteration." />
+
+      {/* ---- HERO ---- */}
+      <section className="px-6 pt-28 md:pt-32 pb-12 md:pb-16">
+        <motion.div className="mx-auto max-w-6xl" {...intro}>
+          <p className="t-eyebrow mb-5">Our Process</p>
+          <h1 className="t-h1 text-ink mb-6 max-w-[16ch]">
+            An idea is only the <span className="t-accent">beginning.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-400 leading-relaxed font-light">
-            A structured, predictable approach to product engineering. We combine agile methodologies with rigorous architectural oversight to guarantee results.
+          <p className="t-body max-w-[46ch]">
+            A structured, predictable path from first conversation to a system that keeps running.
+            You always know which stage you're in.
           </p>
         </motion.div>
-        
-        <div className="space-y-0 relative z-10">
-          {steps.map((step, idx) => (
-            <motion.div 
-              key={idx} 
-              className="group relative grid md:grid-cols-12 gap-8 md:gap-16 py-16 border-t border-white/10 hover:bg-[#0F172A]/50 transition-colors -mx-6 px-6 md:mx-0 md:px-10 rounded-[2.5rem]"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
-            >
-              <div className="md:col-span-2">
-                <span className="text-5xl md:text-6xl font-extralight text-slate-600 group-hover:text-cyan-400 transition-colors drop-shadow-[0_0_8px_rgba(34,211,238,0)] group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">{step.id}</span>
-              </div>
-              
-              <div className="md:col-span-10 grid lg:grid-cols-2 gap-8 lg:gap-24">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-medium text-white mb-4 md:mb-6">{step.title}</h2>
-                  <p className="text-lg md:text-xl text-slate-400 leading-relaxed font-light">
-                    {step.description}
-                  </p>
+      </section>
+
+      {/* ---- TIMELINE STRIP ---- */}
+      <section className="px-6 py-10 md:py-12 bg-paper border-y border-line">
+        <motion.ol className="relative mx-auto max-w-4xl grid grid-cols-5 gap-1 sm:gap-2" {...fadeUp}>
+          <div
+            aria-hidden="true"
+            className="absolute left-[10%] right-[10%] top-5 sm:top-7 border-t border-dashed border-line"
+          />
+          {steps.map((s) => (
+            <li key={s.id} className="relative flex flex-col items-center gap-2 sm:gap-3 min-w-0">
+              <span className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[linear-gradient(150deg,#c4b5fd,#6d4aff)] shadow-[0_10px_24px_-12px_rgba(109,74,255,0.8)] flex items-center justify-center shrink-0">
+                <s.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+              </span>
+              <span className="text-[0.625rem] sm:text-[0.5625rem] font-semibold tracking-[0.04em] sm:tracking-[0.12em] uppercase text-muted text-center">
+                {s.short}
+              </span>
+            </li>
+          ))}
+        </motion.ol>
+      </section>
+
+      {/* ---- STAGES ---- */}
+      <section className="px-6 py-16 md:py-24">
+        <ol className="mx-auto max-w-6xl grid gap-4">
+          {steps.map((step) => (
+            <motion.li key={step.id} className="card p-6 md:p-8" {...fadeUp}>
+              <div className="grid lg:grid-cols-[auto_1fr_1fr] gap-6 lg:gap-12">
+                <div className="flex lg:flex-col items-center lg:items-start gap-4">
+                  <span className="font-display text-3xl font-extrabold text-violet/25 leading-none">
+                    {step.id}
+                  </span>
+                  <span className="inline-flex w-10 h-10 rounded-xl bg-violet/10 items-center justify-center shrink-0">
+                    <step.icon className="w-4 h-4 text-violet" />
+                  </span>
                 </div>
-                
-                <div className="flex flex-col justify-center">
-                  <ul className="space-y-6">
-                    {step.details.map((detail, i) => (
-                      <li key={i} className="flex items-center gap-4">
-                        <div className="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-cyan-400 transition-colors shrink-0 group-hover:drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]" />
-                        <span className="text-lg text-slate-300">{detail}</span>
+
+                <div>
+                  <h2 className="t-h3 text-ink mb-3">{step.title}</h2>
+                  <p className="t-small leading-relaxed max-w-[46ch]">{step.description}</p>
+                </div>
+
+                <div className="rounded-xl bg-cream/70 border border-line p-5">
+                  <h3 className="t-eyebrow !text-muted mb-4">What happens</h3>
+                  <ul className="space-y-2.5">
+                    {step.details.map((d) => (
+                      <li key={d} className="flex items-start gap-2 text-[0.8125rem] text-ink leading-snug">
+                        <Check className="w-3.5 h-3.5 text-violet shrink-0 mt-0.5" />
+                        {d}
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
-      </div>
+        </ol>
+      </section>
+
+      {/* ---- CTA ---- */}
+      <section className="px-6 pb-16 md:pb-24">
+        <motion.div
+          className="mx-auto max-w-6xl rounded-3xl bg-[linear-gradient(120deg,#f2eeff,#f7f5f1_60%)] border border-line p-8 md:p-12 text-center"
+          {...fadeUp}
+        >
+          <h2 className="t-h2 text-ink mb-3">
+            Ready to start at <span className="t-accent">stage one?</span>
+          </h2>
+          <p className="t-body max-w-[42ch] mx-auto mb-7">
+            Discovery begins with a conversation. We reply within one business day.
+          </p>
+          <Link to="/contact" className="btn-primary">
+            Let's Talk
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
+      </section>
     </div>
   );
 }

@@ -1,0 +1,78 @@
+<!--
+  EmailJS template body — paste into Email Templates → Content (Code view).
+
+  The variable names below MUST match `template_params` in src/pages/Contact.tsx.
+  If you rename a form field there, rename it here too, or that row silently
+  renders empty. Current variables:
+      {{fullName}} {{email}} {{company}} {{projectType}} {{message}} {{time}}
+
+  Template settings to set alongside this:
+      Subject   : New {{projectType}} inquiry from {{fullName}}
+      To Email  : contact@versalab.org
+      From Name : VersaLab website
+      Reply-To  : {{email}}     <- so replying goes to the prospect, not yourself
+-->
+<div style="font-family: system-ui, sans-serif, Arial; font-size: 12px">
+  <div>
+    A new project inquiry from <strong>{{fullName}}</strong> has been received. Kindly
+    respond at your earliest convenience.
+  </div>
+
+  <div
+    style="
+      margin-top: 20px;
+      padding: 15px 0;
+      border-width: 1px 0;
+      border-style: dashed;
+      border-color: lightgrey;
+    "
+  >
+    <table role="presentation">
+      <tr>
+        <td style="vertical-align: top">
+          <div
+            style="
+              padding: 6px 10px;
+              margin: 0 10px;
+              background-color: aliceblue;
+              border-radius: 5px;
+              font-size: 26px;
+            "
+            role="img"
+          >
+            👤
+          </div>
+        </td>
+        <td style="vertical-align: top">
+          <div style="color: #2c3e50; font-size: 16px">
+            <strong>{{fullName}}</strong>
+          </div>
+          <div style="color: #cccccc; font-size: 13px">{{time}}</div>
+
+          <table role="presentation" style="margin-top: 12px; font-size: 13px">
+            <tr>
+              <td style="color: #8a8a8a; padding: 2px 12px 2px 0">Email</td>
+              <td style="color: #2c3e50">
+                <a href="mailto:{{email}}" style="color: #6d4aff">{{email}}</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: #8a8a8a; padding: 2px 12px 2px 0">Company</td>
+              <td style="color: #2c3e50">{{company}}</td>
+            </tr>
+            <tr>
+              <td style="color: #8a8a8a; padding: 2px 12px 2px 0">Project type</td>
+              <td style="color: #2c3e50">{{projectType}}</td>
+            </tr>
+          </table>
+
+          <p style="font-size: 16px; margin-top: 16px; white-space: pre-wrap">{{message}}</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="margin-top: 16px; color: #8a8a8a; font-size: 11px">
+    Sent from the contact form at versalab.org
+  </div>
+</div>

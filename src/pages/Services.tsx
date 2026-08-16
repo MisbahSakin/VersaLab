@@ -1,108 +1,128 @@
-import React from 'react';
-import { Check } from 'lucide-react';
+import { Palette, Code2, Sparkles, GraduationCap, Check, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { fadeUp, intro } from '../motion';
+import { Description } from '../Seo';
+
+// Deliberately unnumbered: these are a set, not a sequence.
+const services = [
+  {
+    icon: Palette,
+    title: 'Product design',
+    description:
+      'We craft interfaces that survive contact with real users. The process bridges business objectives and what people actually do, so every interaction earns its place.',
+    deliverables: ['UI/UX design', 'Interactive prototyping', 'User research & testing', 'Design systems'],
+    useCases: ['Complex SaaS dashboards', 'Consumer mobile applications', 'Enterprise internal portals'],
+  },
+  {
+    icon: Code2,
+    title: 'Web & SaaS engineering',
+    description:
+      'Scalable architectures on modern stacks. Robust frontends and secure, highly-available backends built to handle production traffic without heroics.',
+    deliverables: ['Frontend (React, Vue)', 'Backend APIs (Node, Python, Go)', 'Cloud architecture (AWS, GCP)', 'Database design'],
+    useCases: ['B2B SaaS platforms', 'High-traffic marketplaces', 'Data-intensive applications'],
+  },
+  {
+    icon: Sparkles,
+    title: 'Branding systems',
+    description:
+      'Identity work built to be applied rather than admired. Scalable systems that stay consistent across every digital touchpoint and hold up as the product grows.',
+    deliverables: ['Brand strategy & positioning', 'Logo & visual identity', 'Typography & color systems', 'Brand guidelines'],
+    useCases: ['Rebranding legacy systems', 'Launching new products', 'Standardizing UI across product suites'],
+  },
+  {
+    icon: GraduationCap,
+    title: 'Academic companion',
+    description:
+      'Specialized technical work for advanced research and complex IoT implementations. End-to-end hardware-software integration with documentation that holds up to review.',
+    deliverables: ['IoT & embedded engineering', 'Hardware-software integration', 'Research & thesis support', 'Technical project architecture'],
+    useCases: ['University-level IoT prototypes', 'Data-driven research methodologies', 'Complex academic engineering projects'],
+  },
+];
 
 export default function Services() {
-  const fadeUp = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-50px" },
-    transition: { duration: 0.6, ease: "easeOut" }
-  };
-
-  const services = [
-    {
-      id: "01",
-      title: "Product Design",
-      description: "We craft intuitive, user-centric interfaces that drive engagement and simplify complex workflows. Our design process bridges the gap between business objectives and user needs, ensuring every interaction is purposeful.",
-      deliverables: ["UI/UX Design", "Interactive Prototyping", "User Research & Testing", "Design Systems"],
-      useCases: ["Complex SaaS dashboards", "Consumer mobile applications", "Enterprise internal portals"]
-    },
-    {
-      id: "02",
-      title: "Web & SaaS Development",
-      description: "Building scalable, high-performance architectures using modern tech stacks. We engineer robust frontend experiences and secure, highly-available backend systems capable of handling enterprise-grade traffic.",
-      deliverables: ["Frontend Development (React, Vue)", "Backend APIs (Node.js, Python, Go)", "Cloud Architecture (AWS, GCP)", "Database Design"],
-      useCases: ["B2B SaaS platforms", "High-traffic marketplaces", "Data-intensive applications"]
-    },
-    {
-      id: "03",
-      title: "Branding Systems",
-      description: "Creating cohesive visual identities that resonate with your target audience. We build scalable branding systems that maintain consistency across all digital touchpoints and marketing channels.",
-      deliverables: ["Brand Strategy & Positioning", "Logo & Visual Identity", "Typography & Color Systems", "Brand Guidelines"],
-      useCases: ["Rebranding legacy systems", "Launching new products", "Standardizing UI across product suites"]
-    },
-    {
-      id: "04",
-      title: "Academic Companion",
-      description: "Providing specialized technical expertise for advanced academic research and complex IoT implementations. We deliver end-to-end hardware-software integration and structured engineering solutions to accelerate thesis development and technical projects.",
-      deliverables: ["IoT & Embedded Systems Engineering", "Hardware-Software Integration", "Advanced Research & Thesis Support", "Technical Project Architecture"],
-      useCases: ["University-level IoT prototypes", "Data-driven research methodologies", "Complex academic engineering projects"]
-    }
-  ];
-
   return (
-    <div className="pt-28 md:pt-40 pb-24 bg-[#0A0F1C] min-h-screen">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div className="mb-20 md:mb-32 max-w-4xl relative z-10" {...fadeUp}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-8 border border-white/10">
-            <span className="w-2 h-2 rounded-full bg-violet-400 animate-pulse"></span>
-            <span className="text-sm font-medium text-slate-300 tracking-wide uppercase">Our Capabilities</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-medium tracking-tighter text-white mb-6 md:mb-8 leading-[1.05]">
-            End-to-End <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400">Product Engineering.</span>
+    <div>
+      <title>VersaLab | Services</title>
+      <Description text="Product design, web and SaaS engineering, branding systems, and IoT research support." />
+
+      {/* ---- HERO ---- */}
+      <section className="px-6 pt-28 md:pt-32 pb-12 md:pb-16">
+        <motion.div className="mx-auto max-w-6xl" {...intro}>
+          <p className="t-eyebrow mb-5">Services</p>
+          <h1 className="t-h1 text-ink mb-6 max-w-[18ch]">
+            What can we <span className="t-accent">build</span> together?
           </h1>
-          <p className="text-xl md:text-2xl text-slate-400 leading-relaxed font-light">
-            From initial concept to global scale, we provide the technical expertise and design excellence required to build category-defining digital products.
+          <p className="t-body max-w-[46ch]">
+            From first concept to production scale, the technical and design work required to build
+            something people rely on.
           </p>
         </motion.div>
-        
-        <div className="space-y-24 md:space-y-32 relative z-10">
-          {services.map((service, idx) => (
-            <motion.div 
-              key={service.id} 
-              className="grid md:grid-cols-12 gap-10 md:gap-24 items-start border-t border-white/10 pt-12 md:pt-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-            >
-              <div className="md:col-span-5 md:sticky md:top-32">
-                <span className="text-xl font-medium text-cyan-400 mb-4 block drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">{service.id}</span>
-                <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-4 md:mb-6">{service.title}</h2>
-                <p className="text-lg md:text-xl text-slate-400 leading-relaxed font-light">
-                  {service.description}
-                </p>
-              </div>
-              
-              <div className="md:col-span-7 space-y-8 mt-4 md:mt-0">
-                <div className="glass-panel rounded-3xl p-8 md:p-10 card-glow-hover">
-                  <h3 className="text-sm font-semibold tracking-widest text-slate-300 uppercase mb-8 pb-4 border-b border-white/10">Key Deliverables</h3>
-                  <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
-                    {service.deliverables.map((item, i) => (
-                      <li key={i} className="flex items-start gap-4">
-                        <Check className="w-5 h-5 text-blue-400 shrink-0 drop-shadow-[0_0_5px_rgba(59,130,246,0.5)]" />
-                        <span className="text-lg text-slate-300">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+      </section>
+
+      {/* ---- SERVICE BLOCKS ---- */}
+      <section className="px-6 pb-16 md:pb-24">
+        <div className="mx-auto max-w-6xl grid gap-4">
+          {services.map((s) => (
+            <motion.article key={s.title} className="card p-6 md:p-8" {...fadeUp}>
+              <div className="grid lg:grid-cols-[1fr_1.25fr] gap-8 lg:gap-14">
+                <div>
+                  <span className="inline-flex w-11 h-11 rounded-xl bg-violet/10 items-center justify-center mb-5">
+                    <s.icon className="w-5 h-5 text-violet" />
+                  </span>
+                  <h2 className="t-h2 text-ink mb-4">{s.title}</h2>
+                  <p className="t-small leading-relaxed max-w-[46ch]">{s.description}</p>
                 </div>
-                <div className="glass-panel rounded-3xl p-8 md:p-10 card-glow-hover">
-                  <h3 className="text-sm font-semibold tracking-widest text-slate-300 uppercase mb-8 pb-4 border-b border-white/10">Ideal Use Cases</h3>
-                  <ul className="space-y-6">
-                    {service.useCases.map((item, i) => (
-                      <li key={i} className="flex items-start gap-4">
-                        <div className="w-1.5 h-1.5 rounded-full bg-violet-400 mt-2.5 shrink-0 drop-shadow-[0_0_5px_rgba(139,92,246,0.5)]" />
-                        <span className="text-lg text-slate-300">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+
+                <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
+                  <div className="rounded-xl bg-cream/70 border border-line p-5">
+                    <h3 className="t-eyebrow !text-muted mb-4">Deliverables</h3>
+                    <ul className="space-y-2.5">
+                      {s.deliverables.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-[0.8125rem] text-ink leading-snug">
+                          <Check className="w-3.5 h-3.5 text-violet shrink-0 mt-0.5" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-xl bg-violet/[0.06] border border-violet/15 p-5">
+                    <h3 className="t-eyebrow mb-4">Ideal for</h3>
+                    <ul className="space-y-2.5">
+                      {s.useCases.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-[0.8125rem] text-ink leading-snug">
+                          <span className="w-1 h-1 rounded-full bg-violet shrink-0 mt-2" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
-      </div>
+      </section>
+
+      {/* ---- CTA ---- */}
+      <section className="px-6 pb-16 md:pb-24">
+        <motion.div
+          className="mx-auto max-w-6xl rounded-3xl bg-[linear-gradient(120deg,#f2eeff,#f7f5f1_60%)] border border-line p-8 md:p-12 text-center"
+          {...fadeUp}
+        >
+          <h2 className="t-h2 text-ink mb-3">
+            Not sure which one you <span className="t-accent">need?</span>
+          </h2>
+          <p className="t-body max-w-[42ch] mx-auto mb-7">
+            Tell us the problem rather than the solution. We'll tell you what's realistic.
+          </p>
+          <Link to="/contact" className="btn-primary">
+            Let's Talk
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
+      </section>
     </div>
   );
 }

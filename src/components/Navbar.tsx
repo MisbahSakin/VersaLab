@@ -1,113 +1,110 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Layers } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 
+const navLinks = [
+  { name: 'Work', path: '/solutions' },
+  { name: 'Services', path: '/services' },
+  { name: 'Process', path: '/process' },
+  { name: 'About', path: '/about' },
+];
+
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (!mobileMenuOpen) return;
 
-  // Prevent scrolling when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    document.addEventListener('keydown', onKeyDown);
+
     return () => {
       document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', onKeyDown);
     };
   }, [mobileMenuOpen]);
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'Solutions', path: '/solutions' },
-    { name: 'Process', path: '/process' },
-    { name: 'Contact', path: '/contact' },
-  ];
-
   return (
     <>
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#0A0F1C]/80 backdrop-blur-xl border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group relative z-50">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-violet-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform shadow-[0_0_15px_rgba(59,130,246,0.4)]">
-              <Layers className="text-white w-5 h-5" />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-white">VersaLab</span>
-          </Link>
-          
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`text-sm font-medium transition-colors ${
-                  location.pathname === link.path
-                    ? 'text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]'
-                    : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-          <div className="hidden md:flex items-center">
-            <Link to="/contact" className="bg-gradient-to-r from-blue-600 to-violet-600 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 neon-btn hover:-translate-y-0.5">
-              Start a Project
+      <div className="fixed top-4 inset-x-0 z-50 px-4 md:px-8">
+        <nav className="mx-auto max-w-6xl bg-paper/95 backdrop-blur-md border border-line rounded-2xl shadow-[0_2px_18px_-10px_rgba(20,19,28,0.25)]">
+          <div className="relative px-5 md:px-7 h-14 flex items-center justify-between">
+            <Link
+              to="/"
+              className="font-display font-extrabold tracking-[0.02em] text-ink text-[0.9375rem] relative z-50"
+            >
+              VERSA<span className="text-violet">LAB</span>
             </Link>
-          </div>
 
-          <button 
-            className="md:hidden text-slate-300 hover:text-white relative z-50 p-2 -mr-2 transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </nav>
-
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="fixed inset-0 z-40 bg-[#0A0F1C]/95 backdrop-blur-xl pt-28 px-6 md:hidden overflow-y-auto border-b border-white/10"
-          >
-            <div className="flex flex-col space-y-6">
+            <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`text-2xl font-medium tracking-tight ${
+                  aria-current={location.pathname === link.path ? 'page' : undefined}
+                  className={`text-[0.8125rem] font-medium transition-colors ${
                     location.pathname === link.path
-                      ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400'
-                      : 'text-slate-300 hover:text-white'
+                      ? 'text-violet'
+                      : 'text-muted hover:text-ink'
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="pt-8 border-t border-white/5 mt-4">
-                <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center bg-gradient-to-r from-blue-600 to-violet-600 text-white px-6 py-4 rounded-xl text-lg font-medium w-full neon-btn">
-                  Start a Project
+            </div>
+
+            <Link to="/contact" className="hidden md:inline-flex btn-primary py-2.5 px-5 text-[0.8125rem]">
+              Let's Talk
+            </Link>
+
+            <button
+              className="md:hidden text-ink relative z-50 p-1 -mr-1"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            id="mobile-menu"
+            className="fixed inset-0 z-40 bg-cream pt-28 px-8 md:hidden overflow-y-auto"
+          >
+            <div className="flex flex-col">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`t-h2 py-4 border-b border-line ${
+                    location.pathname === link.path ? 'text-violet' : 'text-ink'
+                  }`}
+                >
+                  {link.name}
                 </Link>
-              </div>
+              ))}
+              <Link
+                to="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="btn-primary mt-8 w-full"
+              >
+                Let's Talk
+              </Link>
             </div>
           </motion.div>
         )}

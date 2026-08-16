@@ -1,68 +1,117 @@
-import React from 'react';
-import { Layers } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'motion/react';
+import { intro } from '../motion';
+import { site } from '../siteConfig';
+
+
+const columns = [
+  {
+    heading: 'Company',
+    links: [
+      { label: 'Work', to: '/solutions' },
+      { label: 'Services', to: '/services' },
+      { label: 'Process', to: '/process' },
+      { label: 'About', to: '/about' },
+    ],
+  },
+  {
+    heading: 'Resources',
+    links: [
+      { label: 'Solutions', to: '/solutions' },
+      { label: 'Process', to: '/process' },
+      { label: 'Privacy', to: '/privacy' },
+      { label: 'Contact', to: '/contact' },
+    ],
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0F1C] text-slate-400 py-16 mt-auto border-t border-white/5 relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
-      
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 border-b border-white/5 pb-12">
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                <Layers className="text-white w-4 h-4" />
-              </div>
-              <span className="text-xl font-bold tracking-tight text-white">VersaLab</span>
-            </div>
-            <p className="text-sm leading-relaxed text-slate-500">
-              High-performance global teams building scalable digital products with next-gen engineering.
+    <footer className="bg-night text-white/55 mt-auto">
+      {/* ---- CTA band ---- */}
+      <div className="relative overflow-hidden px-6 py-20 md:py-28">
+        {/* Ambient orbs, standing in for the render in the design */}
+        {/* Kept off small screens: at mobile width the orb sits behind the
+            headline and drops its contrast. */}
+        <div className="pointer-events-none hidden lg:block absolute -right-24 top-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-[radial-gradient(circle_at_35%_30%,#8b6dff,#3b1e9e_45%,#0d0b1f_75%)] opacity-70 blur-[2px]" />
+        <div className="pointer-events-none hidden lg:block absolute -right-6 bottom-10 w-24 h-24 rounded-full bg-[radial-gradient(circle_at_35%_30%,#a78bfa,#4c1d95)] opacity-80" />
+        <div className="pointer-events-none absolute left-[8%] top-10 w-1.5 h-1.5 rounded-full bg-violet-soft" />
+        <div className="pointer-events-none absolute left-[18%] bottom-14 w-1 h-1 rounded-full bg-white/50" />
+        <div className="pointer-events-none absolute left-[4%] bottom-24 w-2 h-2 rounded-full bg-violet/70" />
+
+        <motion.div className="relative mx-auto max-w-2xl text-center" {...intro}>
+          <h2 className="t-h1 text-white mb-4">
+            Have an idea
+            <br />
+            worth <span className="t-accent !text-violet-soft">building?</span>
+          </h2>
+          <p className="text-white/55 text-[0.9375rem] mb-8">
+            Let's turn it into something people remember.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Link to="/contact" className="btn-primary">
+              Start a Project
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a
+              href={`mailto:${site.email}`}
+              className="btn-ghost !bg-white/5 !border-white/15 !text-white hover:!border-white/40"
+            >
+              {site.email}
+            </a>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* ---- Footer proper ---- */}
+      <div className="border-t border-white/10 px-6 py-14">
+        <div className="mx-auto max-w-6xl grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          <div>
+            <p className="font-display font-extrabold text-2xl tracking-[0.02em] text-white mb-2">
+              VERSA<span className="text-violet-soft">LAB</span>
+            </p>
+            <p className="text-[0.8125rem] text-white/60">
+              Ideas <span className="text-violet-soft">→</span> Experiences
             </p>
           </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Services</h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link to="/services" className="hover:text-cyan-400 transition-colors">Product Design</Link></li>
-              <li><Link to="/services" className="hover:text-cyan-400 transition-colors">Web & SaaS Development</Link></li>
-              <li><Link to="/services" className="hover:text-cyan-400 transition-colors">Branding Systems</Link></li>
-              <li><Link to="/services" className="hover:text-cyan-400 transition-colors">Academic Companion</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link to="/" className="hover:text-cyan-400 transition-colors">About Us</Link></li>
-              <li><Link to="/process" className="hover:text-cyan-400 transition-colors">Process</Link></li>
-              <li><Link to="/solutions" className="hover:text-cyan-400 transition-colors">Case Studies</Link></li>
-              <li><Link to="/contact" className="hover:text-cyan-400 transition-colors">Careers</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Stay Updated</h4>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input 
-                type="email" 
-                placeholder="Email address" 
-                className="bg-[#0F172A]/50 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white w-full focus:outline-none focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/50 transition-all placeholder:text-slate-600"
-              />
-              <button className="neon-btn bg-gradient-to-r from-blue-600 to-violet-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap">
-                Subscribe
-              </button>
+
+          {columns.map((col) => (
+            <div key={col.heading}>
+              <h2 className="text-white text-[0.8125rem] font-semibold mb-4">{col.heading}</h2>
+              <ul className="space-y-2.5">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.to} className="text-[0.8125rem] hover:text-white transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
+          ))}
+
+          <div>
+            <h2 className="text-white text-[0.8125rem] font-semibold mb-4">Get in touch</h2>
+            <ul className="space-y-2.5 text-[0.8125rem]">
+              <li>
+                <a href={`mailto:${site.email}`} className="hover:text-white transition-colors">
+                  {site.email}
+                </a>
+              </li>
+              <li>
+                <a href={site.phoneHref} className="hover:text-white transition-colors">
+                  {site.phone}
+                </a>
+              </li>
+              <li>{site.location}</li>
+            </ul>
           </div>
         </div>
-        
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-          <p>&copy; {new Date().getFullYear()} VersaLab Inc. All rights reserved.</p>
-          <div className="flex space-x-6">
-            <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-cyan-400 transition-colors">Terms of Service</a>
-          </div>
+
+        <div className="mx-auto max-w-6xl mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-2 text-[0.75rem] text-white/60">
+          <p>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+          <p>Built with curiosity.</p>
         </div>
       </div>
     </footer>

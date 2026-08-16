@@ -1,94 +1,110 @@
-import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { fadeUp, intro } from '../motion';
+import { Description } from '../Seo';
+
+const solutions = [
+  {
+    id: '01',
+    title: 'MVP development',
+    problem:
+      'Teams spend months building features nobody asked for, burning capital before anyone validates the core assumption.',
+    solution:
+      'A lean cycle that prioritises the core value proposition. Rapid prototyping, two-week sprints, and foundations that survive the next year of growth.',
+    impact:
+      'Live in 8–12 weeks, real user feedback immediately, and validated metrics to take into the next funding round.',
+  },
+  {
+    id: '02',
+    title: 'Scaling engineering teams',
+    problem:
+      'Hiring senior engineers locally is slow and expensive. Roadmaps stall and technical debt compounds while the requisition sits open.',
+    solution:
+      'Pre-vetted engineering pods that integrate into your existing workflow, with a technical advisor keeping architecture aligned to your standards.',
+    impact:
+      'Delivery velocity roughly doubles, hiring overhead drops, and code quality holds without adding management burden.',
+  },
+  {
+    id: '03',
+    title: 'Custom SaaS platforms',
+    problem:
+      'Off-the-shelf software rarely fits real operational workflows, so teams end up with fragmented systems, manual workarounds, and data silos.',
+    solution:
+      'Bespoke, scalable platforms built precisely around your business logic, compliance requirements, and the systems you already run.',
+    impact:
+      'Complex operations streamline, new recurring revenue becomes possible, and the technology itself becomes a competitive advantage.',
+  },
+];
 
 export default function Solutions() {
-  const fadeUp = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-50px" },
-    transition: { duration: 0.6, ease: "easeOut" }
-  };
-
-  const solutions = [
-    {
-      id: "01",
-      title: "MVP Development",
-      problem: "Startups and enterprises often spend months building features users don't need, burning capital before validating core assumptions in the market.",
-      solution: "A lean, focused development cycle prioritizing core value propositions. We utilize rapid prototyping, agile methodologies, and scalable foundations to build what matters most.",
-      impact: "Go to market in 8-12 weeks, gather real user feedback immediately, and secure subsequent funding rounds with validated metrics."
-    },
-    {
-      id: "02",
-      title: "Scaling Engineering Teams",
-      problem: "Hiring senior technical talent locally is slow and expensive, causing product roadmaps to stall and technical debt to accumulate under pressure.",
-      solution: "Seamlessly integrate our pre-vetted, cohesive engineering pods into your existing workflows. Our teams are managed by technical advisors to ensure architectural alignment.",
-      impact: "Accelerate delivery velocity by 2x, drastically reduce hiring overhead, and maintain high code quality standards without management burden."
-    },
-    {
-      id: "03",
-      title: "Custom SaaS Platforms",
-      problem: "Off-the-shelf software fails to accommodate unique operational workflows, leading to fragmented systems, manual workarounds, and data silos.",
-      solution: "Architect and build bespoke, highly scalable SaaS solutions tailored precisely to your business logic, compliance needs, and integration requirements.",
-      impact: "Streamline complex operations, create new recurring revenue streams, and gain a distinct competitive advantage through proprietary technology."
-    }
-  ];
-
   return (
-    <div className="pt-28 md:pt-40 pb-24 bg-[#0A0F1C] min-h-screen">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div className="mb-16 md:mb-24 max-w-4xl relative z-10" {...fadeUp}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-8 border border-white/10">
-            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-            <span className="text-sm font-medium text-slate-300 tracking-wide uppercase">Business Outcomes</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-medium tracking-tighter text-white mb-6 md:mb-8 leading-[1.05]">
-            Strategic <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Solutions.</span>
+    <div>
+      <title>VersaLab | Work</title>
+      <Description text="MVP development, engineering team augmentation, and custom SaaS platforms — the problems VersaLab solves and the outcomes they produce." />
+
+      {/* ---- HERO ---- */}
+      <section className="px-6 pt-28 md:pt-32 pb-12 md:pb-16">
+        <motion.div className="mx-auto max-w-6xl" {...intro}>
+          <p className="t-eyebrow mb-5">Our Work</p>
+          <h1 className="t-h1 text-ink mb-6 max-w-[16ch]">
+            The problems we <span className="t-accent">solve.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-400 leading-relaxed font-light">
-            We don't just write code; we solve complex business challenges. Our solutions are designed to deliver measurable ROI and strategic advantages.
+          <p className="t-body max-w-[46ch]">
+            Every engagement starts from a business problem and ends at a measurable outcome.
+            Here is the work we take on and what it changes.
           </p>
         </motion.div>
-        
-        <div className="space-y-8 relative z-10">
-          {solutions.map((solution, idx) => (
-            <motion.div 
-              key={idx} 
-              className="glass-panel rounded-[2.5rem] p-10 md:p-16 card-glow-hover group"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
-            >
-              <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6 md:gap-8">
-                <div>
-                  <span className="text-xl font-medium text-cyan-400 mb-4 block drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">Solution {solution.id}</span>
-                  <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-cyan-400 transition-all">{solution.title}</h2>
+      </section>
+
+      {/* ---- SOLUTIONS ---- */}
+      <section className="px-6 py-16 md:py-24 bg-paper/60 border-y border-line">
+        <div className="mx-auto max-w-6xl">
+          <motion.div className="mb-10 md:mb-12 max-w-[40ch]" {...fadeUp}>
+            <p className="t-eyebrow mb-4">Business Outcomes</p>
+            <h2 className="t-h2 text-ink mb-4">Where we do our best work.</h2>
+            <p className="t-body">
+              We don't just write code. Each of these is a problem we've built a repeatable
+              approach for.
+            </p>
+          </motion.div>
+
+          <motion.div className="grid gap-4" {...fadeUp}>
+            {solutions.map((s) => (
+              <article key={s.id} className="card p-6 md:p-8">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-line">
+                  <div className="flex items-center gap-4">
+                    <span className="font-display text-sm font-bold text-violet">{s.id}</span>
+                    <h3 className="t-h3 text-ink">{s.title}</h3>
+                  </div>
+                  <Link
+                    to="/contact"
+                    className="group inline-flex items-center gap-1.5 text-[0.75rem] font-semibold text-violet"
+                  >
+                    Discuss this
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </Link>
                 </div>
-                <Link to="/contact" className="inline-flex self-start md:self-auto items-center gap-2 text-lg font-medium text-slate-300 hover:text-cyan-400 transition-colors pb-1 border-b border-slate-700 hover:border-cyan-400">
-                  Discuss this solution <ArrowUpRight className="w-5 h-5" />
-                </Link>
-              </div>
-              
-              <div className="grid lg:grid-cols-3 gap-10 lg:gap-16 pt-10 md:pt-12 border-t border-white/10">
-                <div>
-                  <h3 className="text-sm font-semibold tracking-widest text-slate-500 uppercase mb-6">The Problem</h3>
-                  <p className="text-lg text-slate-400 leading-relaxed font-light">{solution.problem}</p>
+
+                <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+                  <div>
+                    <h4 className="t-eyebrow !text-muted mb-3">The problem</h4>
+                    <p className="t-small leading-relaxed">{s.problem}</p>
+                  </div>
+                  <div>
+                    <h4 className="t-eyebrow !text-muted mb-3">Our approach</h4>
+                    <p className="t-small leading-relaxed">{s.solution}</p>
+                  </div>
+                  <div className="rounded-xl bg-violet/[0.06] border border-violet/15 p-4 -m-1">
+                    <h4 className="t-eyebrow mb-3">The impact</h4>
+                    <p className="text-[0.8125rem] leading-relaxed text-ink">{s.impact}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-sm font-semibold tracking-widest text-white uppercase mb-6">Our Solution</h3>
-                  <p className="text-lg text-slate-400 leading-relaxed font-light">{solution.solution}</p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold tracking-widest text-cyan-400 uppercase mb-6 drop-shadow-[0_0_5px_rgba(34,211,238,0.3)]">The Impact</h3>
-                  <p className="text-lg text-white leading-relaxed font-medium">{solution.impact}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </article>
+            ))}
+          </motion.div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
