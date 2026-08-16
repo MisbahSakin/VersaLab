@@ -4,7 +4,7 @@
 
 export const site = {
   name: 'VersaLab',
-  origin: 'https://versalab.org',
+  origin: 'https://www.versalab.org',
   email: 'contact@versalab.org',
   phone: '+880 1733 771266',
   phoneHref: 'tel:+8801733771266',
