@@ -39,11 +39,11 @@ function HeroArt() {
         <ellipse cx="50" cy="50" rx="44" ry="18" fill="none" stroke="#8b6dff" strokeWidth="0.2" transform="rotate(12 50 50)" />
       </svg>
 
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[36%] aspect-square rounded-[26%] bg-[linear-gradient(150deg,#a78bfa,#6d4aff_55%,#4c22d6)] shadow-[0_24px_60px_-18px_rgba(109,74,255,0.65)] flex items-center justify-center rotate-[-8deg]">
-        <span className="font-display font-extrabold text-white text-[2rem] sm:text-[2.6rem] lg:text-[3.2rem] leading-none -mt-1 rotate-[8deg]">
-          V
-        </span>
-      </div>
+      <img
+        src="/logo.png"
+        alt=""
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[38%] drop-shadow-[0_20px_45px_rgba(20,19,28,0.22)]"
+      />
 
       <div className="absolute right-[12%] top-[27%] w-[13%] aspect-square rounded-full bg-[radial-gradient(circle_at_32%_28%,#c4b5fd,#6d4aff_50%,#3b1e9e)] shadow-[0_10px_26px_-8px_rgba(76,34,214,0.6)]" />
       <div className="absolute left-[21%] top-[45%] w-[8%] aspect-square rounded-[22%] bg-[linear-gradient(140deg,#ddd6fe,#8b6dff)] rotate-[24deg] shadow-lg" />

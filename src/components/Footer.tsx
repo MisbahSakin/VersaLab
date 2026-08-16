@@ -68,9 +68,12 @@ export default function Footer() {
       <div className="border-t border-white/10 px-6 py-14">
         <div className="mx-auto max-w-6xl grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>
-            <p className="font-display font-extrabold text-2xl tracking-[0.02em] text-white mb-2">
-              VERSA<span className="text-violet-soft">LAB</span>
-            </p>
+            <div className="flex items-center gap-2.5 mb-2">
+              <img src="/logo.png" alt="" width={36} height={36} className="w-9 h-9 shrink-0" />
+              <p className="font-display font-extrabold text-2xl tracking-[0.02em] text-white">
+                VERSA<span className="text-violet-soft">LAB</span>
+              </p>
+            </div>
             <p className="text-[0.8125rem] text-white/60">
               Ideas <span className="text-violet-soft">→</span> Experiences
             </p>

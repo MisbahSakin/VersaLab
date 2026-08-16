@@ -34,11 +34,17 @@ export default function Navbar() {
       <div className="fixed top-4 inset-x-0 z-50 px-4 md:px-8">
         <nav className="mx-auto max-w-6xl bg-paper/95 backdrop-blur-md border border-line rounded-2xl shadow-[0_2px_18px_-10px_rgba(20,19,28,0.25)]">
           <div className="relative px-5 md:px-7 h-14 flex items-center justify-between">
-            <Link
-              to="/"
-              className="font-display font-extrabold tracking-[0.02em] text-ink text-[0.9375rem] relative z-50"
-            >
-              VERSA<span className="text-violet">LAB</span>
+            <Link to="/" className="flex items-center gap-2 relative z-50">
+              <img
+                src="/logo.png"
+                alt=""
+                width={28}
+                height={28}
+                className="w-7 h-7 shrink-0"
+              />
+              <span className="font-display font-extrabold tracking-[0.02em] text-ink text-[0.9375rem]">
+                VERSA<span className="text-violet">LAB</span>
+              </span>
             </Link>
 
             <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
